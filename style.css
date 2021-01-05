@@ -1,0 +1,115 @@
+@font-face {
+    font-family: 'DS-DIGI';
+    src: url('../Files/Fonts/DS-DIGI.TTF');
+}
+
+
+
+:root {
+    --clockSize: 30rem;
+    --bgColor: #111;
+    --mainColor: #37f;
+    --loadingSize: 0;
+    --dashArray: 876;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    background: var(--bgColor);
+    font-family: 'DS-DIGI', sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.box {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    margin-top: 10rem;
+}
+
+.clock-container {
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    width: var(--clockSize);
+    height: var(--clockSize);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.clock-shape {
+    fill: transparent;
+    stroke-width: calc(var(--clockSize) * 0.05);
+    stroke: rgba(255, 255, 255, 0.1);
+    stroke-dasharray: var(--dashArray);
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    transition: 1s;
+}
+
+.main-circle {
+    stroke: var(--mainColor);
+    stroke-dashoffset: calc(var(--dashArray) - (var(--dashArray) * (var(--loadingSize) / 60)));
+}
+
+.content {
+    color: var(--mainColor);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5.5rem;
+}
+
+.sec {
+    animation: secAnimation 1s infinite;
+}
+
+@keyframes secAnimation {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+footer {
+    color: #fff;
+    margin-top: 20rem;
+    font-size: 2rem;
+}
+
+.link {
+    color: var(--mainColor);
+    text-decoration: none;
+}
+
+@media (max-width: 300px) {
+    html {
+        font-size: 40.5%;
+    }
+
+    :root {
+        --dashArray: 565;
+    }
+}
